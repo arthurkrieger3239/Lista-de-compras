@@ -31,10 +31,26 @@ async def logar(e,email:ft.TextField ,senha: ft.TextField,lembrar):
         email.update()
         senha.update()
         return
-    if lembrar.value:
-        await manter_logado(e,email.value)
 
-    trocar_tela(e,Telas.Inicio.tela_inicial)
+    page = e.control.page
+
+    usuario_id = Banco.buscar_id_usuario(email.value)
+    dados = Banco.Buscar_usuario_ativo(usuario_id)
+
+    if dados is None:
+        email.error = "Não foi possível carregar os dados do usuário."
+        email.update()
+        return
+
+    page.session.store.set("usuario_id", dados[0])
+    page.session.store.set("nome_usuario", dados[1])
+    page.session.store.set("cpf_usuario", dados[2])
+    page.session.store.set("email_usuario", dados[3])
+
+    if lembrar.value:
+        await manter_logado(e, email.value)
+
+    trocar_tela(e, Telas.Inicio.tela_inicial)
 
 def nao_cadastrado(e):
     trocar_tela(e,Telas.Cadastro.tela_criar_cadastro)
