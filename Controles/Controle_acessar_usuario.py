@@ -13,11 +13,11 @@ async def sair_conta(e):
 
     page = e.control.page
 
-    token_criptografado = await page.shared_preferences.get("projeto_william.auth_token")
+    token_criptografado = await page.shared_preferences.get("Lista_compras.auth_token")
 
     if token_criptografado is not None:
 
-        chave = os.getenv("PROJETO_WILLIAM_SECRET_KEY")
+        chave = os.getenv("LISTA_COMPRAS_SECRET_KEY")
 
         if chave is None:
             raise RuntimeError("Chave de criptografia não configurada")
@@ -28,7 +28,7 @@ async def sair_conta(e):
 
         Banco.excluir_sessao(token_hash)
 
-        await page.shared_preferences.remove("projeto_william.auth_token")
+        await page.shared_preferences.remove("Lista_compras.auth_token")
 
         page.session.store.remove("usuario_id")
         page.session.store.remove("nome_usuario")

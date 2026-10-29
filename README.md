@@ -28,8 +28,6 @@ Abra o terminal na pasta do projeto, onde está o arquivo `main.py`, e execute:
 python main.py
 ```
 
-<<<<<<< HEAD
-Para usar a opção **Lembrar de mim**, configure a variável `PROJETO_WILLIAM_SECRET_KEY` no arquivo `.env` local. Esse arquivo e o banco com dados de usuários não devem ser enviados ao GitHub.
 =======
-Para usar a opção **Lembrar de mim**, configure a variável `PROJETO_WILLIAM_SECRET_KEY` no arquivo `.env` local. 
->>>>>>> 21bf48b76e8fcec78a3c01b0f24d6f064b8d6cfa
+Para usar a opção **Lembrar de mim**, configure a variável `LISTA_COMPRAS_SECRET_KEY` no arquivo `.env` local. 
+

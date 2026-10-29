@@ -10,8 +10,8 @@ import secrets
 import seguranca
 
 
-CHAVE_TOKEN_LOCAL = "projeto_william.auth_token"
-CHAVE_CRIPTOGRAFIA = "PROJETO_WILLIAM_SECRET_KEY"
+CHAVE_TOKEN_LOCAL = "Lista_compras.auth_token"
+CHAVE_CRIPTOGRAFIA = "LISTA_COMPRAS_SECRET_KEY"
 
 async def logar(e,email:ft.TextField ,senha: ft.TextField,lembrar):
     email.error = None
