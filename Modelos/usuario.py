@@ -14,3 +14,10 @@ class Usuario_ativo:
         self.nome = nome
         self.cpf = cpf
         self.email = email
+
+    def apagar_usuario(self):
+
+        self.id = None
+        self.nome = None
+        self.cpf = None
+        self.email = None

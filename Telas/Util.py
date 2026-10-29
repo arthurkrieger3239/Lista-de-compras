@@ -172,6 +172,7 @@ def criar_botao_coluna(texto,funcao,icone = "",tamanho_icone = 32,cor_icone ="#0
 
     return botao
 
+     
 def Inicio(e):
 
     page = e.control.page

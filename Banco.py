@@ -153,3 +153,16 @@ def Buscar_usuario_ativo(id):
         return id, resultado[0],resultado[1],resultado[2]
     else:
         return None
+
+def excluir_sessao(token_hash):
+
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute(
+    "DELETE FROM sessoes WHERE token_hash = ?",
+    (token_hash,)
+    )
+
+    conexao.commit()
+    conexao.close()

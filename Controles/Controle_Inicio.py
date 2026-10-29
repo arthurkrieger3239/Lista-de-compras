@@ -1,6 +1,9 @@
+from Navegacao .navegacao import trocar_tela
+from Telas.Acessar_usuario import Tela_acessar_usuario
+
 
 def acessar_usuario(e):
-    raise NotImplementedError("A função acessar usuario ainda nao foi implementada")
+    trocar_tela(e,Tela_acessar_usuario)
 def Nova_compra(e):
     raise NotImplementedError("A função ainda nao foi implementada")
 def lista_compras(e):
