@@ -1,5 +1,4 @@
 import flet as ft
-from flet.controls.alignment import Alignment
 import Telas.Util as Util
 from Controles import Controle_cadastro,Controle_logar
 

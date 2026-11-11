@@ -1,10 +1,10 @@
 import flet as ft
 import Telas
-from Banco import criar_tabela,Buscar_usuario_ativo
+from Banco import criar_tabela,Buscar_usuario_ativo,apagar_todas_listas
 from Navegacao.navegacao import definir_page
 from Controles.Controle_logar import verificar_login_salvo
 from dotenv import load_dotenv
-from Modelos.usuario import Usuario_ativo 
+
 
 load_dotenv()
 
@@ -13,6 +13,7 @@ async def main(page: ft.Page):
 
     criar_tabela()
     definir_page(page)
+    #apagar_todas_listas()
 
     usuario_id = await verificar_login_salvo(page)
 
@@ -21,7 +22,7 @@ async def main(page: ft.Page):
         page.session.store.set("nome_usuario", dados[1])
         page.session.store.set("cpf_usuario", dados[2])
         page.session.store.set("email_usuario", dados[3])
-        page.add(Telas.Inicio.tela_inicial())
+        page.add(Telas.Inicio.Tela_inicial())
     else:
         page.add(Telas.Login.tela_login())
         

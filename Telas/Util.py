@@ -3,10 +3,11 @@ import Telas
 from flet.controls.alignment import Alignment
 
 
-def criar_campo(texto,icon,password = False):
+def criar_campo(texto,icon = "",password = False,largura = None):
 
         campo = ft.TextField(
-        
+
+            width=largura,
             border_radius = 14,
             label_style = ft.TextStyle(color = "#999B9C"),
             label = texto,
@@ -35,12 +36,11 @@ def criar_fundo():
     )
 
     return fundo_gradiente
-
 def criar_botao_Principal(
     texto ,
     funcao ,
     cor_container = ["#1677FF", "#12DFF3"],
-    largura_borda=300,
+    largura_borda=float("inf"),
     altura_borda=56,
     cor="#FFFFFF",
     tamanho_letra=18,
@@ -62,7 +62,7 @@ def criar_botao_Principal(
     
     conteudo = ft.Row(
          controls = controle,
-         alignment = ft.MainAxisAlignment.CENTER
+         alignment = ft.MainAxisAlignment.CENTER,
     )
          
 
@@ -84,7 +84,6 @@ def criar_botao_Principal(
             spread_radius=1,
             color="#4012DFF3"
         ),
-
         on_click=funcao,
         ink=True
     )
@@ -171,12 +170,11 @@ def criar_botao_coluna(texto,funcao,icone = "",tamanho_icone = 32,cor_icone ="#0
          ) 
 
     return botao
-
      
 def Inicio(e):
 
     page = e.control.page
 
     page.clean()
-    page.add(Telas.Inicio.tela_inicial())
+    page.add(Telas.Inicio.Tela_inicial())
     

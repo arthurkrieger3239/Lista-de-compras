@@ -25,6 +25,27 @@ def criar_tabela():
     )
     """)
 
+    cursor.execute("""
+
+    CREATE TABLE IF NOT EXISTS  lista_compras(
+    
+    id_lista INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_lista TEXT NOT NULL,
+    usuario_id INTEGER NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+
+    )
+""")
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS itens_lista (
+        id_item INTEGER PRIMARY KEY AUTOINCREMENT,
+        id_lista INTEGER NOT NULL,
+        produto TEXT NOT NULL,
+        quantidade INTEGER NOT NULL,
+        FOREIGN KEY (id_lista) REFERENCES lista_compras(id_lista)
+    )
+""")
     conexao.commit()
     conexao.close()
 
@@ -163,6 +184,106 @@ def excluir_sessao(token_hash):
     "DELETE FROM sessoes WHERE token_hash = ?",
     (token_hash,)
     )
+
+    conexao.commit()
+    conexao.close()
+
+def get_id_lista(nome_lista,usuario_id):
+
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute("""SELECT id_lista FROM lista_compras WHERE nome_lista = ? AND usuario_id = ? """,(nome_lista,usuario_id))
+
+    resultado = cursor.fetchone()
+
+    if resultado is None:
+        return None
+
+    conexao.commit()
+    conexao.close()
+
+    return resultado[0]
+
+def Criar_lista(usuario_id,nome_lista):
+
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "INSERT INTO lista_compras (usuario_id,nome_lista) VALUES(?,?)",
+        (usuario_id,nome_lista)
+    )
+    id_list = cursor.lastrowid
+
+    conexao.commit()
+    conexao.close()
+
+    return id_list
+
+def Salvar_item(id_lista,produto,quantidade):
+
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "INSERT INTO itens_lista(id_lista,produto,quantidade) VALUES(?,?,?)",
+        (id_lista,produto,quantidade)
+    )
+
+    conexao.commit()
+    conexao.close()
+
+def Acessar_todas_listas(usuario_id):
+
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "SELECT id_lista,nome_lista FROM lista_compras WHERE usuario_id = ?",
+        (usuario_id,)
+    )
+
+    listas = cursor.fetchall()
+
+    conexao.commit()
+    conexao.close()
+
+    return listas 
+
+def apagar_todas_listas():
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute("DELETE FROM itens_lista")
+    cursor.execute("DELETE FROM lista_compras")
+
+    conexao.commit()
+    conexao.close()
+
+def itens_da_lista(id_lista):
+
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute(
+    "SELECT produto, quantidade FROM itens_lista WHERE id_lista = ?",
+    (id_lista,)
+)
+    itens = cursor.fetchall()
+
+    conexao.commit()
+    conexao.close()
+
+    return itens
+
+def Apagar_lista(id_lista):
+
+    conexao = sqlite3.connect("banco_dados.db")
+    cursor = conexao.cursor()
+
+    cursor.execute("DELETE FROM itens_lista WHERE id_lista = ?",(id_lista,))
+    cursor.execute("DELETE FROM lista_compras WHERE id_lista = ?",(id_lista,))
 
     conexao.commit()
     conexao.close()

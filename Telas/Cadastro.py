@@ -25,7 +25,7 @@ def criar_conteudo():
     logo,nome,cpf,email,senha,confirmar_senha = criar_componentes()
     botao_cadastrar = Util.criar_botao_Principal(
         "Cadastar",
-        lambda e: cadastrar(e,nome,cpf,email,senha,confirmar_senha),
+        lambda e: cadastrar(e,nome,cpf,email,senha,confirmar_senha)
     )
     
     

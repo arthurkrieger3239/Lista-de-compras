@@ -83,7 +83,7 @@ def Tela_acessar_usuario():
     
     acesar_usuario = ft.Stack(
         controls=[
-            Telas.Inicio.tela_inicial(),
+            Telas.Inicio.Tela_inicial(),
             tela_fundo,
             Menu
         ],

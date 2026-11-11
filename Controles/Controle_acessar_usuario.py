@@ -2,7 +2,6 @@ import os
 import Banco
 import seguranca
 from flet.security import decrypt
-from Modelos.usuario import Usuario_ativo
 from Navegacao.navegacao import trocar_tela
 from Telas.Login import tela_login
 

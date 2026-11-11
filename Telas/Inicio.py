@@ -351,7 +351,7 @@ def criar_conteudo():
 
     return conteudo
 
-def tela_inicial():
+def Tela_inicial():
 
     fundo = Util.criar_fundo()
     conteudo = criar_conteudo()

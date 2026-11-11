@@ -14,8 +14,9 @@ def trocar_tela(e,nova_tela):
     if page is None:
         raise RuntimeError("A página ainda não foi definida")
 
+    tela = nova_tela()
     page.clean()
-    page.add(nova_tela())
+    page.add(tela)
 
 def fechar_dialogo(e):
     page = e.control.page

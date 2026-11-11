@@ -50,7 +50,7 @@ async def logar(e,email:ft.TextField ,senha: ft.TextField,lembrar):
     if lembrar.value:
         await manter_logado(e, email.value)
 
-    trocar_tela(e, Telas.Inicio.tela_inicial)
+    trocar_tela(e, Telas.Inicio.Tela_inicial)
 
 def nao_cadastrado(e):
     trocar_tela(e,Telas.Cadastro.tela_criar_cadastro)
